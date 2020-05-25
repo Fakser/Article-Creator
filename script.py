@@ -54,7 +54,7 @@ while number_of_proper_articles < number_of_articles:
     bad_url = False
     # next we check if these page was not already added to the list (google likes to give you the same result many times)
     for url in urls:
-        if url in new_url or new_url in url or 'youtube' in new_url or 1/edit_distance(new_url, url) > 0.05 or uniform() < article_randomness:
+        if url in new_url or new_url in url or 'youtube' in new_url or 1/(edit_distance(new_url, url)+1) > 0.05 or uniform() < article_randomness:
             bad_url = True
             break
     if bad_url == False:
@@ -79,7 +79,7 @@ for url in urls:
     page_splitted = re.split('{|}',soup.text)
     for article in page_splitted:
         # cleaning text part from unnecesary stuff
-        article = article.replace('\n', ' ').replace('  ','')
+        article = article.replace('\n', ' ').replace('  ','').replace('\\u','')
         new_article = ''
         for sentence in article.split('. '):
             new_article += re.sub('["#$%&()*+-/:;<=>@^_{|}~\r\t]', '', sentence) + '. '
@@ -92,7 +92,7 @@ for url in urls:
             new_url = image.attrs['srcset'].split(',')[0]
             bad_url = False
             for url in images:
-                if 1/edit_distance(new_url, url) > 0.2:
+                if (1/edit_distance(new_url, url)+1) > 0.2:
                     bad_url = True
                     break
             if bad_url == False:
@@ -195,7 +195,7 @@ for article in articles:
         try:
             matches = tool.check(new_sentence)
             for match in matches:
-                if 'anise' in match.replacements:
+                if 'anise' in match.replacements or 'mange' in match.replacements:
                     matches.remove(match)
             new_sentence = language_check.correct(new_sentence, matches)
             if metrics >= sentence_quality:
@@ -272,7 +272,7 @@ def get_header(text, lenght):
             # next we try to create a sensical sentence from it
             matches = tool.check(header)
             for match in matches:
-                if 'anise' in match.replacements:
+                if 'anise' in match.replacements or 'mange' in match.replacements:
                     matches.remove(match)
             return language_check.correct(header, matches)
             
