@@ -1,6 +1,7 @@
 from nltk.corpus import words
 from nltk.corpus import wordnet
-from nltk.corpus import stopwords 
+from nltk.corpus import stopwords
+from nltk.metrics import edit_distance 
 from time import sleep
 from time import time
 from bs4 import BeautifulSoup
@@ -19,7 +20,6 @@ import requests
 import re
 import language_check
 import random
-#TODO bardziej losowe strony
 
 # NLP and webscrapping based article/report creator
 # author: Krzysztof Kramarz
@@ -28,9 +28,11 @@ import random
 topic = 'machine learning basics' # Topic of an article
 sentence_quality = 0.4 # variable describing quality of the sentence
 number_of_articles = 10 # number of articles scipt will be scrapping
-change_to_synonym_chance = 0.1
+change_to_synonym_chance = 0.2
+article_randomness = 0.2
 max_word_len = 10
 tool = language_check.LanguageTool('en-US') # tool for checking grammar in sentences
+delete_unnecesarry = True
 
 if len(argv) > 1:
     topic = argv[1]
@@ -52,7 +54,7 @@ while number_of_proper_articles < number_of_articles:
     bad_url = False
     # next we check if these page was not already added to the list (google likes to give you the same result many times)
     for url in urls:
-        if url in new_url or new_url in url or 'youtube' in new_url:
+        if url in new_url or new_url in url or 'youtube' in new_url or 1/edit_distance(new_url, url) > 0.05 or uniform() < article_randomness:
             bad_url = True
             break
     if bad_url == False:
@@ -87,7 +89,15 @@ for url in urls:
     # iterating throught all img objects found in responce to get some hot pictures
     for index, image in enumerate(soup.findAll('img')):
         if 'srcset' in image.attrs.keys():
-            images.append(image.attrs['srcset'].split(',')[0])
+            new_url = image.attrs['srcset'].split(',')[0]
+            bad_url = False
+            for url in images:
+                if 1/edit_distance(new_url, url) > 0.2:
+                    bad_url = True
+                    break
+            if bad_url == False:
+                images.append(new_url)
+                print(new_url)
         # if index > int(len(soup.findAll('img')) * 4/7) and index < int(len(soup.findAll('img')) * 5/7) and 'src' in image.attrs.keys():
         #     images.append(image.attrs['src'])
 
@@ -195,6 +205,11 @@ for article in articles:
     cleaned_articles.append(deepcopy(cleaned_article))
 
 print('creating random article')
+
+# additional clearing from unnecessary parts like terms of use etc.
+if delete_unnecesarry == True:
+    for index in range(len(cleaned_articles)):
+        cleaned_articles[index] = cleaned_articles[index][int(len(cleaned_articles[index])* 0.1):int(len(cleaned_articles[index])* 0.9)]
 
 # random new article
 # splitting each article into introduction, elaboration and conclusion and mixing them 
