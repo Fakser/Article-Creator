@@ -85,14 +85,14 @@ for url in urls:
             new_article += re.sub('["#$%&()*+-/:;<=>@^_{|}~\r\t]', '', sentence) + '. '
         # if this text meets our requierments we add it to the list of articles
         if len(new_article) >= 4000:
-            articles.append(re.sub('(figure|fig|fig.) [0-9]', '' ,new_article))
+            articles.append(re.sub('([0-9]|)[fF]ig(ure.|ure|.)( [0-9]| |[0-9])', '' ,new_article))
     # iterating throught all img objects found in responce to get some hot pictures
     for index, image in enumerate(soup.findAll('img')):
         if 'srcset' in image.attrs.keys():
             new_url = image.attrs['srcset'].split(',')[0]
             bad_url = False
             for url in images:
-                if (1/edit_distance(new_url, url)+1) > 0.2:
+                if 1/(edit_distance(new_url, url)+1) > 0.2:
                     bad_url = True
                     break
             if bad_url == False:
@@ -287,9 +287,9 @@ document.add_heading(topic.upper(), 0)
 m = len(os.listdir('./photos/'))
 n = sum([len(random_article[key]) for key in random_article.keys()])
 if n > m:
-    r = m/(n * 2)
+    r = m/(n * 5)
 else:
-    r = n/(m * 2)
+    r = n/(m * 5)
 image_chance = 1
 
 for key in random_article.keys():
