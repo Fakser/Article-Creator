@@ -1,5 +1,5 @@
 # ArticleCreator
-Probably all IT students one day have to create a boring report about some topic. 
+Probably all IT students one day have to create a boring report about some boring topic. 
 Sometimes as an employee of IT company you are 'kindly asked' to write similar article/paper that no one will read, 
 but it will look very professional on their webpage. And sometimes instead of searching throught the internet for 
 information about something that you know nothing about is pretty boring.  You probably would prefer to play Fortnite 
