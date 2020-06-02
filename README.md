@@ -14,9 +14,17 @@ Thus i would like to introduce my personal Report writer aka Article creator.
 *PART 1* Usage:
 
 1. download repository
-2. install all requiered libraries (virtualenv will be added soon)
-3. from command line/anaconda prompt/powershell/: [path to this repository on your pc] python script.py "HERE PUT THE TITLE OF YOUR ARTICLE"
-4. Wait some time, on my coputere average waiting time is around 40 seconds
-5. Hey, suddenly some new file called 'report.docx' appeared in the repository folder, oh my lord it is fully working shitty article with stupid headers and even photos how the hell does it work?
+2. install all requiered libraries with pipenv install
+3. there will be still some problems as some of them couldn't be added to pipenv for some reason, install all of them with pip
+4. you will probably need to install some nltk files and  java 6.0, you will know it from the errors :) 
+5. from command line/anaconda prompt/powershell/: [path to this repository on your pc]/pipenv shell
+6. next just run:  python script.py "HERE PUT THE TITLE OF YOUR ARTICLE"
+7. Wait some time, on my computer average waiting time is around 40 seconds
+8. Hey, suddenly some new file called 'report.docx' appeared in the repository folder, oh my lord it is fully working shitty article with stupid headers and even photos how the hell does it work?
 
 (Description will be added soon)
+
+
+
+
+(There is no time to explain, just read the src.lib file, i've added some comments)
