@@ -22,9 +22,10 @@ Thus i would like to introduce my personal Report writer aka Article creator.
 7. Wait some time, on my computer average waiting time is around 40 seconds
 8. Hey, suddenly some new file called 'report.docx' appeared in the repository folder, oh my lord it is fully working shitty article with stupid headers and even photos how the hell does it work?
 
+*PART 2* Description:
 (Description will be added soon)
 
 
 
 
-(There is no time to explain, just read the src.lib file, i've added some comments)
+(There is no time to explain, just read the src/lib.py file, i've added some comments)
