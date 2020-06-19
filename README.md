@@ -9,6 +9,8 @@ And what we do with boring responisibilites?
 
 Yes, exactly, we automate them.
 
+
+
 Thus i would like to introduce my personal Report writer aka Article creator. 
 
 *PART 1* Usage:
