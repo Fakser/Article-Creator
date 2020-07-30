@@ -9,7 +9,7 @@ And what we do with boring responisibilites?
 
 Yes, exactly, we automate them.
 
-![alt markdown](https://scontent.fwaw3-1.fna.fbcdn.net/v/t1.0-9/103759283_1181432162200799_5150201221214050988_n.jpg?_nc_cat=100&_nc_sid=ca434c&_nc_ohc=Tdud_dA5tOYAX_m0CMc&_nc_ht=scontent.fwaw3-1.fna&oh=0980fd2990e0a88eac60e63ba81db6df&oe=5F1183E6)
+![alt markdown](./meme.jpg)
 
 Thus i would like to introduce my personal Report writer aka Article creator. 
 
